@@ -7,10 +7,7 @@
     [value]="task"
     [globalFilterFields]="['title', 'priority', 'status', 'user']"
     [tableStyle]="{ 'min-width': '50rem' }"
-    [scrollable]="true"
-    [responsive]="true" [responsiveLayout]="'scroll'"
-    
-    >
+    [scrollable]="true" [responsive]="true" [responsiveLayout]="'scroll'">
 
     <ng-template #caption >
       <div class="globale-search">
@@ -79,7 +76,7 @@
   <div class="form-article">
     <label for="id">ID</label>
     <input id="id" formControlName="id" type="text"  (input)="profileForm.controls['id'].markAsTouched()"  placeholder="add id" />
-          <div class="error" *ngIf="profileForm.controls.id.invalid && profileForm.controls.id.touched">
+          <div class="error-message" *ngIf="profileForm.controls.id.invalid && profileForm.controls.id.touched">
             <small *ngIf="profileForm.controls['id'].hasError('required')">ID is required.</small>
             <small *ngIf="profileForm.controls['id'].hasError('pattern')">ID must be a number.</small>
             <small *ngIf="profileForm.controls['id'].hasError('minlength')">Must must be at least 1 characters long.</small>
@@ -89,7 +86,7 @@
   <div class="form-article">
     <label for="title">new title</label>
     <input id="title" formControlName="title" type="text"  (input)="profileForm.controls['title'].markAsTouched()" placeholder="add title" />
-        <div class="error" *ngIf="profileForm.controls['title'].invalid && profileForm.controls['title'].touched">  
+        <div class="error-message" *ngIf="profileForm.controls['title'].invalid && profileForm.controls['title'].touched">  
         <small *ngIf="profileForm.controls['title'].hasError('required')">Title is required.</small>
         <small *ngIf="profileForm.controls['title'].hasError('minlength')">Must be at least 3 characters long.</small>
     </div>
@@ -99,7 +96,7 @@
     <div class="form-article">
       <label for="discription">new discription</label>
       <input id="discription" formControlName="discription" type="text"  (input)="profileForm.controls['discription'].markAsTouched()" placeholder="add discription" />
-      <div class="error" *ngIf="profileForm.controls['discription'].invalid && profileForm.controls['discription'].touched">
+      <div class="error-message" *ngIf="profileForm.controls['discription'].invalid && profileForm.controls['discription'].touched">
         <small *ngIf="profileForm.controls['discription'].hasError('required')">Discription is required.</small>
         <small *ngIf="profileForm.controls['discription'].hasError('minlength')">Must be at least 5 characters long.</small>
       </div>
@@ -118,7 +115,7 @@
         <option value="medium">{{taskPriority.Medium}}</option>
         <option value="high">{{taskPriority.High}}</option>
       </select>
-      <div class="error" *ngIf="profileForm.controls['priority'].invalid && profileForm.controls['priority'].touched">
+      <div class="error-message" *ngIf="profileForm.controls['priority'].invalid && profileForm.controls['priority'].touched">
         <small *ngIf="profileForm.controls['priority'].hasError('required')">Priority is required.</small>
       </div>
     </div>
@@ -132,7 +129,7 @@
         <option value="completed">{{taskStatus.Completed}}</option>
         <option value="postponed">{{taskStatus.Postponed}}</option>
       </select>
-      <div class="error" *ngIf="profileForm.controls['status'].invalid && profileForm.controls['status'].touched">
+      <div class="error-message" *ngIf="profileForm.controls['status'].invalid && profileForm.controls['status'].touched">
         <small *ngIf="profileForm.controls['status'].hasError('required')">Status is required.</small>
       </div>
     </div>
@@ -142,7 +139,7 @@
     <div class="form-article">
       <label for="user">user</label>
       <input id="user" formControlName="user" type="text"  (input)="profileForm.controls['user'].markAsTouched()" placeholder="user name" />
-      <div class="error" *ngIf="profileForm.controls['user'].invalid && profileForm.controls['user'].touched">
+      <div class="error-message" *ngIf="profileForm.controls['user'].invalid && profileForm.controls['user'].touched">
         <small *ngIf="profileForm.controls['user'].hasError('required')">Name is required.</small>
         <small *ngIf="profileForm.controls['user'].hasError('minlength')">Name must be at least 3 characters long.</small>
       </div>
