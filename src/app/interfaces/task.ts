@@ -1,6 +1,3 @@
-// import { PriorityState } from "../types/priorityState";
-// import { TaskStatus } from "../types/taskStatus-type";
-
 import { TaskPriority } from "../enum/taskpriority.enum";
 import { TaskStatus } from "../enum/taskstatus.enum";
 
@@ -12,5 +9,4 @@ export interface InterfaceTask {
     priority: TaskPriority | undefined;
     status: TaskStatus | undefined;
     user: string | undefined;
-
 }

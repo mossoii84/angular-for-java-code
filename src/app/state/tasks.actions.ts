@@ -1,7 +1,7 @@
 import { createActionGroup, props } from "@ngrx/store";
 import { Task } from "../modules/task.model";
 
-//сервис для получения списка task
+//service for get tasks list
 export const TasksListActions = createActionGroup({
   source: 'Task API',
   events: {
@@ -9,12 +9,12 @@ export const TasksListActions = createActionGroup({
   },
 });
 
-//сервис для создание/удаление task
+//service for add/delete task
 export const TasksActions = createActionGroup({
     source: 'Tasks',
     events: {
-      'Add Task': props<{ task: Task }>(), //добавляем всю задачу
-      'Remove Task': props<{ taskId: number }>(), //удаляем задачу по id
+      'Add Task': props<{ task: Task }>(), 
+      'Remove Task': props<{ taskId: number }>(),
     },
   });
 

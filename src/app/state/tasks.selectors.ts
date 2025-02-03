@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Task } from "../modules/task.model";
 
-export const getSelectTasks = createFeatureSelector<ReadonlyArray<Task>>('tasksListReducer'); //- taskReduce - ключ из app.config
+export const getSelectTasks = createFeatureSelector<ReadonlyArray<Task>>('tasksListReducer'); //- taskReduce - key by app.config
 export const selectTaskList = createSelector(
     getSelectTasks,
      (tasks) => { return tasks}
