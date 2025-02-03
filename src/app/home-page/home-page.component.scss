@@ -1,0 +1,101 @@
+.task-table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  p-table {
+    border: 1px solid rgb(165, 163, 163);
+    width: 80%;
+  }
+  .globale-search {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    img { position: absolute; margin: 10px; }
+
+    .search {
+      height: 40px;
+      width: 300px;
+      padding-left: 40px;
+      font-size: 18px;
+    }
+
+  }
+
+  p-dialog div {
+    margin: 10px 0;
+  }
+}
+
+.btn {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  margin: 30px 0 ;
+}
+
+
+
+.form-container {
+
+  .p-dialog-container {
+    display: grid;
+    justify-content: center;
+
+  .form-article {
+      margin-bottom: 20px;
+      width: 230px;
+    }
+    input {
+      min-width: 100%;
+      height: 36px;
+      border-radius: 6px;
+      border: 1px solid grey;
+      padding: 0 10px;
+    }
+    select {
+      min-width: 100%;
+      height: 36px;
+      border-radius: 6px;
+      border: 1px solid grey;
+      padding: 0 10px;
+      //убираем кастомную стрелку у select
+      -webkit-appearance: none; /* Для WebKit-браузеров */
+      -moz-appearance: none; /* Для Firefox */
+       appearance: none; /* Стандартное свойство */
+       
+  }
+
+
+
+
+
+    .btn-add {
+      display: flex;
+      justify-content: end;
+      margin: 25px 0 ;
+    }
+
+    p-datepicker {
+      position: absolute;
+      width: 230px;
+    }
+    .p-inputtext:enabled:hover {
+      border-color: grey;
+    }
+
+
+
+
+
+  }
+
+}
+
+
+
+.error {
+  position: absolute;
+  font-size: 14px;
+  color:red;
+}

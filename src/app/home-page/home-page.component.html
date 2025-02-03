@@ -1,0 +1,156 @@
+<h2>Home</h2>
+
+<div class="task-table-container">
+  <p-table
+    #dt1
+    *ngIf="tasks$ | async as task"
+    [value]="task"
+    [globalFilterFields]="['title', 'priority', 'status', 'user']"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [scrollable]="true"
+    [responsive]="true" [responsiveLayout]="'scroll'"
+    
+    >
+
+    <ng-template #caption >
+      <div class="globale-search">
+            <img src="/icons/search.svg" alt="" />
+            <input class="search"
+                pInputText
+                type="text"
+                [(ngModel)]="searchQuery"
+                (input)="dt1.filterGlobal(searchQuery, 'contains')"
+                placeholder="search"
+            />
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th> Title </th>
+        <th> Discription </th>
+        <th pSortableColumn="datelimite"> Date limite <p-sortIcon field="datelimite" /></th>
+        <th pSortableColumn="priority"> Priority <p-sortIcon field="priority" /></th>
+        <th pSortableColumn="status"> Status <p-sortIcon field="status" /></th>
+        <th pSortableColumn="user"> User <p-sortIcon field="user" /></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-task>
+      <tr>
+        <td>{{ task.title }}</td>
+        <td>{{ task.discription }}</td>
+        <td>{{ task.datelimite | date }}</td>
+        <td>{{ task.priority}}
+          <!-- @switch (task.priority) {
+            @case (0) { low }
+            @case (1) { medium }
+            @case (2) { high }
+          } -->
+        </td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.user }}</td>
+        <td>
+          <div>
+            <p-button label="remove" severity="danger" (onClick)="onRemove(task.id)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+ 
+<div class="btn"><p-button label="add new task" (click)="addNewTask()" /></div>
+
+
+
+
+<form [formGroup]="profileForm" class="form-container">
+
+  <p-dialog
+    header="Add new task"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '28rem'}"
+  >
+<div class="p-dialog-container">
+
+  <div class="form-article">
+    <label for="id">ID</label>
+    <input id="id" formControlName="id" type="text"  (input)="profileForm.controls['id'].markAsTouched()"  placeholder="add id" />
+          <div class="error" *ngIf="profileForm.controls.id.invalid && profileForm.controls.id.touched">
+            <small *ngIf="profileForm.controls['id'].hasError('required')">ID is required.</small>
+            <small *ngIf="profileForm.controls['id'].hasError('pattern')">ID must be a number.</small>
+            <small *ngIf="profileForm.controls['id'].hasError('minlength')">Must must be at least 1 characters long.</small>
+          </div>
+  </div>
+
+  <div class="form-article">
+    <label for="title">new title</label>
+    <input id="title" formControlName="title" type="text"  (input)="profileForm.controls['title'].markAsTouched()" placeholder="add title" />
+        <div class="error" *ngIf="profileForm.controls['title'].invalid && profileForm.controls['title'].touched">  
+        <small *ngIf="profileForm.controls['title'].hasError('required')">Title is required.</small>
+        <small *ngIf="profileForm.controls['title'].hasError('minlength')">Must be at least 3 characters long.</small>
+    </div>
+  </div>
+
+    
+    <div class="form-article">
+      <label for="discription">new discription</label>
+      <input id="discription" formControlName="discription" type="text"  (input)="profileForm.controls['discription'].markAsTouched()" placeholder="add discription" />
+      <div class="error" *ngIf="profileForm.controls['discription'].invalid && profileForm.controls['discription'].touched">
+        <small *ngIf="profileForm.controls['discription'].hasError('required')">Discription is required.</small>
+        <small *ngIf="profileForm.controls['discription'].hasError('minlength')">Must be at least 5 characters long.</small>
+      </div>
+    </div>
+
+    <div class="form-article">
+      <label for="priority" style="display: grid;">datelimite</label>
+      <p-datepicker formControlName="datelimite" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"  />
+    </div>
+
+    <div style="margin-top: 40px;" class="form-article">
+      <label for="priority">priority</label>
+      <select  id="priority" formControlName="priority"  >  
+        <option value="" disabled >choose priority</option>
+        <option value="low">{{taskPriority.Low}}</option>
+        <option value="medium">{{taskPriority.Medium}}</option>
+        <option value="high">{{taskPriority.High}}</option>
+      </select>
+      <div class="error" *ngIf="profileForm.controls['priority'].invalid && profileForm.controls['priority'].touched">
+        <small *ngIf="profileForm.controls['priority'].hasError('required')">Priority is required.</small>
+      </div>
+    </div>
+
+    <div class="form-article">
+      <label for="status">status</label>
+      <select  id="status" formControlName="status" >
+        <option value="" disabled >choose status</option>
+        <option value="open">{{taskStatus.Open}}</option>
+        <option value="in progress">{{taskStatus.InProgress}}</option>
+        <option value="completed">{{taskStatus.Completed}}</option>
+        <option value="postponed">{{taskStatus.Postponed}}</option>
+      </select>
+      <div class="error" *ngIf="profileForm.controls['status'].invalid && profileForm.controls['status'].touched">
+        <small *ngIf="profileForm.controls['status'].hasError('required')">Status is required.</small>
+      </div>
+    </div>
+
+
+        
+    <div class="form-article">
+      <label for="user">user</label>
+      <input id="user" formControlName="user" type="text"  (input)="profileForm.controls['user'].markAsTouched()" placeholder="user name" />
+      <div class="error" *ngIf="profileForm.controls['user'].invalid && profileForm.controls['user'].touched">
+        <small *ngIf="profileForm.controls['user'].hasError('required')">Name is required.</small>
+        <small *ngIf="profileForm.controls['user'].hasError('minlength')">Name must be at least 3 characters long.</small>
+      </div>
+    </div>
+
+
+    <p-button label="inStore" class="btn-add"  (onClick)="onAdd(profileForm)"  [disabled]="profileForm.invalid"/>
+
+    </div>
+  </p-dialog>
+</form>
