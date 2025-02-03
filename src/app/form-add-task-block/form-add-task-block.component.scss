@@ -43,8 +43,14 @@
     }
   }
   
+  .error-block {
+    position: relative;
+    height: 20px;
+    margin-bottom: -20px;
+  }
   .error-message {
-    font-size: 14px;
+    position: absolute;
     color: red;
+    font-size: 12px;
   }
   
