@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -29,9 +29,9 @@ export class FormAddTaskBlockComponent {
   store = inject(Store);
 
   //from parent
-  isVisible: boolean = false;
+  isVisible = signal(false);
   openDialogAddTask() {
-    this.isVisible = true;
+    this.isVisible.update(value => !value);
   }
 
   taskPriority = TaskPriority;
@@ -43,7 +43,8 @@ export class FormAddTaskBlockComponent {
     console.log('Task:', task);
     this.store.dispatch(TasksActions.addTask({ task }));
     form.reset();
-    this.isVisible=false;
+    this.isVisible.update(value => !value);
+
   }
 
 
